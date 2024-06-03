@@ -1,8 +1,10 @@
 package Models.Entities;
 
 public class Categorie {
+	
 	private int id;
 	private String titre;
+	
 	
 	public int getId() {
 		return id;
@@ -16,10 +18,12 @@ public class Categorie {
 	public void setTitre(String titre) {
 		this.titre = titre;
 	}
+	
 	public Categorie(int id, String titre) {
 		this.id = id;
 		this.titre = titre;
 	}
+	
 	public Categorie(String titre) {
 		this.titre = titre;
 	}

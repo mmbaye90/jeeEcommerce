@@ -2,6 +2,7 @@ package Controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -13,16 +14,16 @@ import Model.dao.CategoriieDao;
 import Models.Entities.Categorie;
 
 /**
- * Servlet implementation class Index
+ * Servlet implementation class Header
  */
-@WebServlet("/Index")
-public class Index extends HttpServlet {
+@WebServlet("/Header")
+public class Header extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Index() {
+    public Header() {
         super();
         Db.connect();
     }
@@ -33,7 +34,7 @@ public class Index extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ArrayList<Categorie> cat = new CategoriieDao().getAll();
 		request.setAttribute("categories", cat);
-		request.getRequestDispatcher("/index.jsp").forward(request, response);
+		request.getRequestDispatcher("/header.jsp").forward(request, response);
 	}
 
 	/**
