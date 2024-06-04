@@ -39,7 +39,7 @@
         <!-- PRELOADER -->
         <!-- <div id="loader"></div> -->
 
-        <div class="body">
+        <!-- <div class="body"> -->
             <!-- TOPBAR -->
             <div class="top_bar">
                 <div class="container">
@@ -145,7 +145,15 @@
 	                                <ul class="nav navbar-nav navbar-right">
 	                                <c:forEach var="catCol" items="${requestScope['categories']}">
 	                                    <li>
-	                                        <a href="./index.html" class="active" >${catCol.titre}</a>
+	                                        <a href=
+	                                        	"
+		                                        	<c:url value ='categorie.jsp'>
+		                                        		<c:param name = 'nameCat' value = '${catCol.titre}'/>
+		                                        	</c:url>
+                         						 " 
+                   								class="active" id="cat${catCol.id}">
+	                                        	${catCol.titre}
+	                                        </a>
 	                                    </li>
 	                                 </c:forEach>
 										<!-- <li>
@@ -400,10 +408,10 @@
                 </div>
             </div>	 -->
 
-        </div>
+     <!--    </div> -->
 
 
-        <div id="backtotop"><i class="fa fa-chevron-up"></i></div>
+        <!-- <div id="backtotop"><i class="fa fa-chevron-up"></i></div> -->
 
 
 
