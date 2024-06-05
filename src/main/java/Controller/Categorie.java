@@ -2,6 +2,7 @@ package Controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -9,22 +10,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import ConDB.Db;
-import Model.dao.CategoriieDao;
 import Model.dao.ProduitDao;
-import Models.Entities.Categorie;
 import Models.Entities.Produit;
 
 /**
- * Servlet implementation class Index
+ * Servlet implementation class Categorie
  */
-@WebServlet("/Index")
-public class Index extends HttpServlet {
+@WebServlet("/Categorie")
+public class Categorie extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Index() {
+    public Categorie() {
         super();
         Db.connect();
     }
@@ -33,15 +32,21 @@ public class Index extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//LIST CATEGORIES 
-		ArrayList<Categorie> cat = new CategoriieDao().getAll();
-		request.setAttribute("categories", cat);
-		
-		//SEN LIST PRODUCTS TO JSP
-		ArrayList<Produit> prdt = new ProduitDao().getAll();		
-		request.setAttribute("produits", prdt);
-		
-		request.getRequestDispatcher("/index.jsp").forward(request, response);
+		  
+		  Integer id = Integer.parseInt(request.getParameter("cat_id"));
+		  String name = request.getParameter("namCat");
+		  
+		  if (id != null) {
+			  System.out.println(id);
+			  ArrayList<Produit> listPrdtByIdCat = new ProduitDao().getAllByCat(id);
+			  //listPrdtByIdCat.forEach((lp)->{System.out.println(lp.getTitre());});
+			  
+			  request.setAttribute("productByCatId", listPrdtByIdCat);
+			  request.setAttribute("namCat", name);
+		}
+		  
+	
+		request.getRequestDispatcher("/categorie.jsp").forward(request, response);
 	}
 
 	/**

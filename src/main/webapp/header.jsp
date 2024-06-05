@@ -143,12 +143,22 @@
 	                            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 	                                
 	                                <ul class="nav navbar-nav navbar-right">
+	                                <li>
+	                                        <a href=
+	                                        	"
+		                                        	<c:url value ='Index'></c:url>
+                         						 " 
+                   								class="active" >
+	                                        	Accueil
+	                                        </a>
+	                                    </li>
 	                                <c:forEach var="catCol" items="${requestScope['categories']}">
 	                                    <li>
 	                                        <a href=
 	                                        	"
-		                                        	<c:url value ='categorie.jsp'>
-		                                        		<c:param name = 'nameCat' value = '${catCol.titre}'/>
+		                                        	<c:url value ='Categorie'>
+		                                        		<c:param name = 'cat_id' value = '${catCol.id}'/>
+		                                        		<c:param name = 'namCat' value = '${catCol.titre}'/>
 		                                        	</c:url>
                          						 " 
                    								class="active" id="cat${catCol.id}">
